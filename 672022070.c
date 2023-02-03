@@ -9,19 +9,24 @@ int menu3();
 void gotoxy();
 
 int main(){
+    int ukuran;
     int pilihan = menu();
-    if (pilihan == 1){
-        menu1();
-    }
-    else if (pilihan == 2){
-        menu2();
-    }
-    else if (pilihan == 3){
-        menu3();
-    }
-    else{
+    if (pilihan == 4){
         system("exit");
         return 0;
+    }
+    system("cls");
+    printf("masukkan ukuran: ");
+    scanf("%i", &ukuran);
+    system("cls");
+    if (pilihan == 1){
+        menu1(ukuran);
+    }
+    else if (pilihan == 2){
+        menu2(ukuran);
+    }
+    else{
+        menu3(ukuran);
     }
     system("pause");
     main();
@@ -68,12 +73,8 @@ int menu(){
     }
 }
 
-int menu1(){
-    int ukuran, val;
-    system("cls");
-    printf("masukkan ukuran: ");
-    scanf("%i", &ukuran);
-    system("cls");
+int menu1(int ukuran){
+    int val;
     for (int row = 0; row <= ukuran; row++){
         for (int col = 0; col <= row; col++){
             val = row + col;
@@ -88,12 +89,8 @@ int menu1(){
     }
 }
 
-int menu2(){
-    int ukuran, val;
-    system("cls");
-    printf("masukkan ukuran: ");
-    scanf("%i", &ukuran);
-    system("cls");
+int menu2(int ukuran){
+    int val;
     for (int row = 1; row <= ukuran; row++){
         for (int col = 1; col <= row; col++){
             val = row * col;
@@ -108,12 +105,7 @@ int menu2(){
     }
 }
 
-int menu3(){
-    int ukuran;
-    system("cls");
-    printf("masukkan bilangan: ");
-    scanf("%i", &ukuran);
-    system("cls");
+int menu3(int ukuran){
     for (int row = 1; row <= ukuran; row++){
         for (int col = 0; col < ukuran - row; col++){
             printf(" ");
