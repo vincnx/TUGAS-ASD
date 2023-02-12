@@ -284,12 +284,12 @@ int main_3(){
         break;
     case 2:
         main_3_2();
+        break;
     case 3:
         main_3_3();
+        break;
     case 4:
         main();
-        break;
-    default:
         break;
     }
 }
@@ -425,12 +425,14 @@ int calculate_3_1(int pil_3_1){
         main_3();
         break;
     }
-    cond = pause();
-    if (cond == 'y' || cond == 'Y'){
-        calculate_3_1(pil_3_1);
-    }
-    else if (cond == 'n' || cond == 'N'){
-        main_3_1();
+    if (pil_3_1 != 5){
+        cond = pause();
+        if (cond == 'y' || cond == 'Y'){
+            calculate_3_1(pil_3_1);
+        }
+        else if (cond == 'n' || cond == 'N'){
+            main_3_1();
+        }
     }
 }
     // end bagian 3.1
@@ -525,12 +527,14 @@ int calculate_3_2(int pil_3_2){
         main_3();
         break;
     }
-    cond = pause();
-    if (cond == 'y' || cond == 'Y'){
-        calculate_3_2(pil_3_2);
-    }
-    else if (cond == 'n' || cond == 'N'){
-        main_3_2();
+    if (pil_3_2 != 5){
+        cond = pause();
+        if (cond == 'y' || cond == 'Y'){
+            calculate_3_2(pil_3_2);
+        }
+        else if (cond == 'n' || cond == 'N'){
+            main_3_2();
+        }
     }
 }
     // end bagian 3.2
@@ -646,12 +650,14 @@ int calculate_3_3(int pil_3_3){
         main_3();
         break;
     }
-    cond = pause();
-    if (cond == 'y' || cond == 'Y'){
-        calculate_3_3(pil_3_3);
-    }
-    else if (cond == 'n' || cond == 'N'){
-        main_3_3();
+    if (pil_3_3 != 5){
+        cond = pause();
+        if (cond == 'y' || cond == 'Y'){
+            calculate_3_3(pil_3_3);
+        }
+        else if (cond == 'n' || cond == 'N'){
+            main_3_3();
+        }
     }
 }
     // end bagian 3.3
