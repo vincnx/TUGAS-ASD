@@ -4,6 +4,11 @@
 #include <math.h>
 
 int menu_awal();
+// bagian login
+int login();
+int menu_0();
+int menu_0_1();
+int main_0();
 // bagian 1
 int main_1();
 int menu_1();
@@ -39,11 +44,19 @@ int main_4();
 // tools
 int pause();
 void gotoxy();
+char *get_pass();
 
 const float pi = 3.14159;
+char password[100][8];
+char id[100][100];
+int login_cond = 0;
+int idx = 0;
 
 int main(){
     int pil,  num1, num2;
+    if (!login_cond){
+        main_0();
+    }
     pil = menu_awal();
     switch (pil){
     case 1:
@@ -65,6 +78,152 @@ int main(){
         system("cls");
         system("exit");
     }
+}
+
+int main_0(){
+    int pil = menu_0(); 
+    if (pil == 1){
+        menu_0_1();       
+    }
+    else if(pil == 2){
+        login();
+    }
+    else{
+        printf("Invalid Input");
+        Sleep(1000);
+        main_0();
+    }
+}
+
+int login(){
+    char name[100];
+    char pass[8];
+    char key;
+    while (1){
+        int i = 0;
+        system("cls");
+        printf("masukkan id       : ");
+        scanf(" %[^\n]s", &name);
+        printf("masukkan password : ");
+        while ((key = getch()) != 13){
+            if (i < 0){
+                i = 0;
+            }
+            if (key == 8){
+                if (i == 0){
+                    continue;
+                }
+                else{
+                    printf("\b \b");
+                    i--;
+                    continue;
+                }
+            }
+            if (i == 8){
+                continue;
+            }
+            printf("*");
+            pass[i] = key;
+            i++;
+        }
+        pass[i] = '\0';
+        for (int i = 0; i < idx; i++){
+            if (strcmp(id[i], name) == 0 && strcmp(password[i], pass) == 0){
+                system("cls");
+                printf("Berhasil Login");
+                Sleep(2000);
+                login_cond = 1;
+                return 0;
+            }
+            else{
+                continue;
+            }
+        }
+        system("cls");
+        printf("Maaf, id atau password salah");
+        Sleep(2000);
+        return main_0();
+    }
+}
+
+int menu_0(){
+    int pos_y = 3;
+    while(1){
+        system("cls");
+        gotoxy(0,0);
+        printf("==================");
+        gotoxy(0,1);
+        printf("   REGISTRASI");
+        gotoxy(0,2);
+        printf("==================");
+        gotoxy(5,3);
+        printf("1. Registrasi");
+        gotoxy(5,4);
+        printf("2. Login");
+        gotoxy(0,5);
+        printf("==================");
+        gotoxy(0, pos_y);
+        printf("==>");
+        int key = getch();
+        if (key == 72){
+            pos_y--;
+        }
+        else if (key == 80){
+            pos_y++;
+        }
+        else if (key == 13){
+            return pos_y - 2;
+        }
+        if (pos_y == 5){
+            pos_y = 3;
+        }
+        else if (pos_y == 2){
+            pos_y = 4;
+        }
+    }
+}
+
+int menu_0_1(){
+    char key;
+    int i = 0;
+    system("cls");
+    printf("masukkan id       : ");
+    scanf("%s", &id[idx]);
+    for (int i = 0; i < idx; i++){
+        if (strcmp(id[i], id[idx]) == 0){
+            printf("Id Telah digunakan");
+            Sleep(1000);
+            return menu_0_1();
+        }
+    }
+    printf("masukkan password : ");
+    while ((key = getch()) != 13){
+        if (i < 0){
+            i = 0;
+        }
+        if (key == 8){
+            if (i == 0){
+                continue;
+            }
+            else{
+                printf("\b \b");
+                i--;
+                continue;
+            }
+        }
+        if (i == 8){
+            continue;
+        }
+        printf("*");
+        password[idx][i] = key;
+        i++;
+    }
+    password[idx][i] = '\0';
+    idx++;
+    system("cls");
+    printf("Registrasi Berhasil");
+    Sleep(2000);
+    main_0(); 
 }
 
 int menu_awal(){
