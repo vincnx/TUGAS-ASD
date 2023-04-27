@@ -108,9 +108,10 @@ void tambah_nasabah(){
             no_nasabah = nasabah.nomor;
         }
         gotoxy(80, 17);
-        printf("\033[47m\033[30mmasukkan nama :");
+        printf("\033[47m\033[30mMasukkan Nama :");
         gotoxy(80, 18);
         scanf(" %[^\n]s", nasabah.nama);
+        nasabah.nama[0] = toupper(nasabah.nama[0]);
         nasabah.nomor = no_nasabah + 1;
         nasabah.saldo = 0;
     }
@@ -118,8 +119,10 @@ void tambah_nasabah(){
     fprintf(fp, "%s %i %i\n", nasabah.nama, nasabah.nomor, nasabah.saldo);
     fclose(fp);
     startDisplay(1);
-    gotoxy(80, 17);
-    printf("\033[47m\033[30mNasabah berhasil ditambahkan\n");
+    gotoxy(80, 15);
+    printf("\033[47m\033[30mNasabah %s Berhasil Ditambahkan", nasabah.nama);
+    gotoxy(80, 16);
+    printf("\033[47m\033[30mDengan Nomor Rekening %i", nasabah.nomor);
     gotoxy(80, 18);
     system("pause");
     main();
