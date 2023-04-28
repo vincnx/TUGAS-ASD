@@ -101,9 +101,8 @@ void tambah_nasabah(){
     int no_nasabah = 672022000;
     FILE *fp;
     startDisplay(1);
-    char ID;
     fp = fopen("NextFile.dat", "a+");
-    if ((fp = fopen("NextFile.dat", "a+")) != NULL){
+    if (fp != NULL){
         while (fscanf(fp, "%s %i %i", nasabah.nama, &nasabah.nomor, &nasabah.saldo) != EOF){
             no_nasabah = nasabah.nomor;
         }
@@ -111,11 +110,11 @@ void tambah_nasabah(){
         printf("\033[47m\033[30mMasukkan Nama :");
         gotoxy(80, 18);
         scanf(" %[^\n]s", nasabah.nama);
+        fflush(stdin);
         nasabah.nama[0] = toupper(nasabah.nama[0]);
         nasabah.nomor = no_nasabah + 1;
         nasabah.saldo = 0;
     }
-    fp = fopen("NextFile.dat", "a");
     fprintf(fp, "%s %i %i\n", nasabah.nama, nasabah.nomor, nasabah.saldo);
     fclose(fp);
     startDisplay(1);
