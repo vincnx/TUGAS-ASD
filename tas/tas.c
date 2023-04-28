@@ -176,7 +176,7 @@ void setor(){
     else{
         rp = fopen("TempFile.dat", "w+");
         gotoxy(80, 16);
-        printf("\033[47m\033[30mmasukkan nomor rekening:");
+        printf("\033[47m\033[30mMasukkan Nomor Rekening:");
         gotoxy(80, 17);
         scanf("%i", &no_nasabah);
         fflush(stdin);
@@ -185,15 +185,17 @@ void setor(){
             if (no_nasabah == nasabah.nomor){
                 cond = 1;
                 I:
+                startDisplay(1);
                 gotoxy(80, 16);
                 printf("\033[47m\033[30mRekening %s", nasabah.nama);
                 gotoxy(80, 18);
-                printf("\033[47m\033[30mmasukkan jumlah : ");
+                printf("\033[47m\033[30mMasukkan Jumlah : ");
                 scanf("%i", &jumlah);
                 startDisplay(1);
                 if (jumlah <= 0){
+                    startDisplay(1);
                     gotoxy(80, 17);
-                    printf("\033[47m\033[30mjumlah terlalu kecil");
+                    printf("\033[47m\033[30mJumlah Terlalu Kecil!");
                     gotoxy(80, 18);
                     system("pause");
                     goto I;
@@ -213,7 +215,7 @@ void setor(){
         }
         if (!cond){
             gotoxy(80, 17);
-            printf("\033[47m\033[30mNOMOR REKENING TIDAK DIKENAL!");
+            printf("\033[47m\033[30mNomor Rekening Tidak Valid!");
         }
         fclose(rp);
         fclose(fp);
@@ -238,7 +240,7 @@ void tarik(){
         rp = fopen("TempFile.dat", "a");
         startDisplay(1);
         gotoxy(80, 16);
-        printf("\033[47m\033[30mmasukkan nomor rekening:");
+        printf("\033[47m\033[30mMasukkan Nomor Rekening:");
         gotoxy(80, 17);
         scanf("%i", &no_nasabah);
         fflush(stdin);
@@ -247,14 +249,16 @@ void tarik(){
             if (no_nasabah == nasabah.nomor){
                 cond = 1;
                 I:
+                startDisplay(1);
                 gotoxy(80, 16);
                 printf("\033[47m\033[30mRekening %s\n", nasabah.nama);
                 gotoxy(80, 18);
-                printf("\033[47m\033[30mmasukkan jumlah: ");
+                printf("\033[47m\033[30mMasukkan Jumlah: ");
                 scanf("%i", &jumlah);
                 if (jumlah <= 0){
+                    startDisplay(1);
                     gotoxy(80, 17);
-                    printf("\033[47m\033[30mjumlah terlalu kecil");
+                    printf("\033[47m\033[30mJumlah Terlalu Kecil!");
                     gotoxy(80, 18);
                     system("pause");
                     goto I;
@@ -263,6 +267,8 @@ void tarik(){
                     if (nasabah.saldo - jumlah <= 0){
                         gotoxy(80, 17);
                         printf("\033[47m\033[30mSaldo anda tidak cukup.\n");
+                        gotoxy(80, 18);
+                        system("pause");
                         goto I;
                     }
                     else{
@@ -282,7 +288,7 @@ void tarik(){
         }
         if (!cond){
             gotoxy(80, 17);
-            printf("\033[47m\033[30mNOMOR REKENING TIDAK DIKENAL!\n");
+            printf("\033[47m\033[30mNomor Rekening Tidak Valid!\n");
         }
         fclose(rp);
         fclose(fp);
@@ -455,7 +461,7 @@ void cek_saldo(){
     }
     else{
         gotoxy(80, 17);
-        printf("\033[47m\033[30mNasabah Tidak Ada");
+        printf("\033[47m\033[30mNomor Rekening Tidak Valid!");
     }
     fclose(sfile);
     gotoxy(80, 19);
@@ -485,7 +491,7 @@ void hapus_nasabah(){
     }
     if (!found){
         gotoxy(80, 17);
-        printf("\033[47m\033[30mNasabah Tidak Ada");
+        printf("\033[47m\033[30mNomor Rekening Tidak Valid!");
     }
     else{
         gotoxy(80, 17);
